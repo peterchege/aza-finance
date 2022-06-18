@@ -6,8 +6,6 @@ import transactionRoute from "./routes/transaction.routes";
 
 
 
-
-
 const app = express();
 
 app.use(express.json());

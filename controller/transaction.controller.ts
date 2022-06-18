@@ -31,7 +31,6 @@ export const getTransaction = async (req: Request, res: Response) => {
         const schema: Schema = Joi.object({
             transactionId: Joi.number().required().label("Transaction id"),
         });
-        console.log(req.params)
         const result = validateSchema(req.params, schema);
         if (result) return res.status(200).send({ success: false, message: result });
         const transaction = await Transaction.findOne({ where: { id: req.params.transactionId } })
