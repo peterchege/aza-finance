@@ -2,6 +2,7 @@ import "reflect-metadata";
 import 'dotenv/config';
 require('dotenv').config();
 import express, { Request, Response } from "express";
+import transactionRoute from "./routes/transaction.routes";
 
 
 
@@ -10,6 +11,9 @@ import express, { Request, Response } from "express";
 const app = express();
 
 app.use(express.json());
+
+app.use("/v1/api/transactions", transactionRoute);
+
 
 
 
