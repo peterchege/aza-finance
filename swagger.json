@@ -1,0 +1,242 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "AZA FINANCE API",
+        "description": "A sample API that uses FX transaction microservice to store transactions",
+        "contact": {
+            "name": "Swagger API Team",
+            "url": "http://swagger.io"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/v1/api/",
+    "tags": [
+        {
+            "name": "Transaction",
+            "description": "Transaction operations"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/transactions": {
+            "post": {
+                "tags": [
+                    "Transaction"
+                ],
+                "summary": "Create a single transaction ",
+                "description": "Create a single transaction in the system",
+                "operationId": "createTransaction",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Transaction object that needs to be added to the list",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Transaction"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/CreatedTransactionResponse"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Transaction"
+                ],
+                "summary": "Get all transactions",
+                "description": "Get all transactions from the system",
+                "operationId": "getTransactions",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Transactions"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/transactions/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the single transaction",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Transaction"
+                ],
+                "summary": "Getting a single transaction with a given ID",
+                "description": "Getting a single transaction",
+                "operationId": "getSingleTransactions",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Transactions"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Transaction": {
+            "type": "object",
+            "description": "Transaction object",
+            "properties": {
+                "emailAddress": {
+                    "type": "string",
+                    "format": "email"
+                },
+                "inputAmount": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "inputAmountCurrency": {
+                    "type": "string",
+                    "format": "currency"
+                },
+                "outputAmount": {
+                    "type": "integer",
+                    "format": "double"
+                },
+                "outputAmountCurrency": {
+                    "type": "string",
+                    "format": "currency"
+                }
+            }
+        },
+        "CreatedTransactionResponse": {
+            "type": "object",
+            "description": "Response object for created transaction",
+            "properties": {
+                "success": {
+                    "type": "boolean"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "emailAddress": {
+                    "type": "string",
+                    "format": "email"
+                },
+                "inputAmount": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "inputAmountCurrency": {
+                    "type": "string",
+                    "format": "currency"
+                },
+                "outputAmount": {
+                    "type": "integer",
+                    "format": "double"
+                },
+                "outputAmountCurrency": {
+                    "type": "string",
+                    "format": "currency"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "Transactions": {
+            "type": "object",
+            "description": "Transactions object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "emailAddress": {
+                    "type": "string",
+                    "format": "email"
+                },
+                "inputAmount": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "inputAmountCurrency": {
+                    "type": "string",
+                    "format": "currency"
+                },
+                "outputAmount": {
+                    "type": "integer",
+                    "format": "double"
+                },
+                "outputAmountCurrency": {
+                    "type": "string",
+                    "format": "currency"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "deletedAt": {
+                    "type": "null"
+                }
+            }
+        },
+        "Id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Unique identifier for the transaction",
+            "properties": {
+                "transactionId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        }
+    }
+}
