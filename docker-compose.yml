@@ -1,0 +1,36 @@
+version: "3"
+services:
+  app:
+   depends_on:
+     - mariadb
+   build:
+      context: .
+      dockerfile: Dockerfile
+   restart: unless-stopped
+   env_file: ./.env
+   ports:
+     - "3000:3000"
+   environment:
+     - DB_HOST=$DB_HOST
+     - DB_USERNAME=$DB_USERNAME
+     - DB_PASSWORD=$DB_PASSWORD
+     - DB_DATABASE=$DB_DATABASE
+     - DB_PORT=$DB_PORT
+   stdin_open: true
+   tty: true
+
+  mariadb:
+   image: mariadb:latest
+   restart: unless-stopped
+   env_file: ./.env
+   environment:
+     - DB_PASSWORD=$DB_PASSWORD
+     - DB_DATABASE=$DB_DATABASE
+   ports:
+     - "8889:8889"
+   volumes:
+     - db:/var/lib/mariadb 
+
+volumes: 
+ db:
+
