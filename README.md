@@ -28,6 +28,20 @@ yarn dev
   swagger-ui  Endpoint : http://localhost:3000/swagger/
 
 
+  ## Run app with docker
+
+```
+
+ docker-compose build
+
+ docker-compose up or docker-compose up -d
+
+```
+Note: make sure you are on the root file when running the docker commands 
+
+
+
+
 ## Project Structure
 The folder structure of this app is explained below:
 

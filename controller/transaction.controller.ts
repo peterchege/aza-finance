@@ -70,7 +70,6 @@ export const updateTransaction = async (req: Request, res: Response) => {
         if (result) return res.status(200).send({ success: false, message: result });
         const transaction = await Transaction.update(req.body, { where: { id: req.params.transactionId } })
         const updateInfo = await Transaction.findOne({ where: { id: req.params.transactionId } })
-        console.log(transaction);
         return res.send({ success: true, message: "Transaction Updated successfully ", data: updateInfo })
     } catch (error) {
         console.log(error)
